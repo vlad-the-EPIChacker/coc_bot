@@ -71,10 +71,13 @@
 </div>
 <pre class="sikuli-code">
 <span class="kw">import</span> time
+
+
 myScriptPath = <span class="str">"C:\\Users\\vlad\\Desktop\\Projects sirkulix"</span>
 <span class="kw">if</span> <span class="kw">not</span> myScriptPath <span class="kw">in</span> sys.path: sys.path.append(myScriptPath)
 <span class="kw">import</span> pics
 reload(pics)
+
 <span class="kw">def</span> chat(msg):
     <span class="kw">if</span> <span class="kw">not</span> exists(pics.pics[<span class="str">"chatbar"</span>]):
         <span class="skw">click</span>(pics.pics[<span class="str">"chat1"</span>])
@@ -84,15 +87,53 @@ reload(pics)
     <span class="skw">wait</span>(pics.pics[<span class="str">"chatbar2"</span>])
     <span class="skw">type</span>(msg)
     <span class="skw">click</span>(pics.pics[<span class="str">"send"</span>])
-<span class="kw">def</span> collect():
-    <span class="skw">click</span>(pics.pics[<span class="str">"elixer_c"</span>])
-    <span class="kw">if</span> exists(pics.pics[<span class="str">"elixir1"</span>]):
-        <span class="skw">click</span>(pics.pics[<span class="str">"elixir1"</span>])
-    <span class="kw">else</span>:
-        <span class="kw">return</span>
 
-chat(<span class="str">"hello world"</span>)
-<span class="cmt">#collect()</span>
+<span class="kw">def</span> collect():
+    ne=list([x <span class="kw">for</span> x <span class="kw">in</span> findAll(pics.pics[<span class="str">"elixir_c"</span>])])
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, len(ne)):
+        <span class="skw">click</span>(ne[i])
+        <span class="kw">if</span> exists(pics.pics[<span class="str">"elixir1"</span>]):
+            <span class="skw">click</span>(pics.pics[<span class="str">"elixir1"</span>])
+    ne=list([x <span class="kw">for</span> x <span class="kw">in</span> findAll(pics.pics[<span class="str">"gold_m"</span>])])
+    <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, len(ne)):
+        <span class="skw">click</span>(ne[i])
+        <span class="kw">if</span> exists(pics.pics[<span class="str">"gold1"</span>]):
+            <span class="skw">click</span>(pics.pics[<span class="str">"gold1"</span>])
+
+<span class="kw">def</span> parse(x):
+    y=<span class="dig">0</span>
+    <span class="kw">try</span>:
+        y=int(x)
+    <span class="kw">except</span>:
+        y=x.replace(<span class="str">"I"</span>,<span class="str">"1"</span>)
+        y=y.replace(<span class="str">"Z"</span>,<span class="str">"2"</span>)
+    <span class="kw">return</span> int(y)
+<span class="kw">def</span> train_troops():
+    <span class="skw">click</span>(pics.pics[<span class="str">"barracks"</span>])
+    <span class="skw">click</span>(pics.pics[<span class="str">"train"</span>])
+    x=<span class="skw">find</span>(pics.pics[<span class="str">"troop_c"</span>]).text()
+    z=<span class="skw">find</span>(pics.pics[<span class="str">"train_c"</span>]).text()
+    <span class="kw">print</span> z
+    full=z.split(<span class="str">"/"</span>)
+    <span class="kw">print</span> full
+    troops=x.split(<span class="str">"/"</span>)
+<span class="cmt">#    print troops</span>
+    troops[<span class="dig">0</span>]=parse(troops[<span class="dig">0</span>])
+    troops[<span class="dig">1</span>]=parse(troops[<span class="dig">1</span>])
+    full[<span class="dig">0</span>]=parse(full[<span class="dig">0</span>])
+    full[<span class="dig">1</span>]=parse(full[<span class="dig">1</span>])
+    time.<span class="skw">sleep</span>(<span class="dig">1</span>)
+    <span class="kw">while</span> troops[<span class="dig">0</span>]&lt;troops[<span class="dig">1</span>]:
+        <span class="kw">if</span> full[<span class="dig">0</span>]&gt;full[<span class="dig">1</span>]:
+            <span class="kw">if</span> exists(pics.pics[<span class="str">"switch"</span>]):
+                <span class="skw">click</span>(pics.pics[<span class="str">"switch"</span>])
+        troops[<span class="dig">0</span>]=troops[<span class="dig">0</span>]+<span class="dig">1</span>
+        full[<span class="dig">0</span>]=full[<span class="dig">0</span>]+<span class="dig">1</span>
+        <span class="skw">click</span>(pics.pics[<span class="str">"barb"</span>])
+<span class="cmt">#chat("hello world")</span>
+<span class="kw">while</span> True:
+    collect()
+<span class="cmt">#train_troops()</span>
 
 </pre>
 </body>

@@ -1,6 +1,6 @@
 pics={}
-pics["elixir_c"]="1456972945127.png"
-pics["gold_m"]="1456972975322.png"
+pics["elixir_c"]="1456937822662.png"
+pics["gold_m"]="1456947711658.png" 
 pics["chatbar"]="1456940565214.png"
 pics["chatbar2"]="1456937176564.png"
 pics["send"]="1456936831160.png"
@@ -13,3 +13,4 @@ pics["troop_c"]="1456949015349.png"
 pics["barb"]="1456948231529.png"
 pics["train_c"]="1456968540240.png"
 pics["switch"]="1456967983002.png"
+pics.pics["loot_cart"]="1456971240854.png"

@@ -58,6 +58,7 @@ def train_troops():
         troops[0]=troops[0]+1
         full[0]=full[0]+1
         click(pics.pics["barb"])
+
 #chat("hello world")
 while True:
     collect()

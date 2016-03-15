@@ -25,6 +25,7 @@ def collect():
     ne=list([x for x in findAll(pics.pics["gold_m"])])
     for i in range(0, len(ne)):
         click(ne[i])
+        time.sleep(0.5)
         if exists(pics.pics["gold1"]):
             click(pics.pics["gold1"])  
 
@@ -41,11 +42,11 @@ def train_troops():
     click(pics.pics["train"])
     x=find(pics.pics["troop_c"]).text()
     z=find(pics.pics["train_c"]).text()
-    print z
+#    print z
     full=z.split("/")
     print full
     troops=x.split("/")
-#    print troops
+    print troops
     troops[0]=parse(troops[0])
     troops[1]=parse(troops[1])
     full[0]=parse(full[0])
@@ -58,8 +59,25 @@ def train_troops():
         troops[0]=troops[0]+1
         full[0]=full[0]+1
         click(pics.pics["barb"])
+def upgrade():
+#    click("1457584925750.png")
+    click("1457585669229.png")
+    if exists(pics.pics["Gnupgrade"]):
+        ggold=find(pics.pics["Gnupgrade"])
+        print "ggold"
+    elif exists(pics.pics["Enupgrade"]):
+        gelixer=find(pics.pics["Enupgrade"])
+        print "gelixer"
+    else:
+        print "null"
+        return
 
+    
 #chat("hello world")
-while True:
-    collect()
+#while True:
+#    try:
+#        collect()
+#    except:
+#        time.sleep(1)
 #train_troops()
+upgrade()

@@ -97,6 +97,7 @@ reload(pics)
     ne=list([x <span class="kw">for</span> x <span class="kw">in</span> findAll(pics.pics[<span class="str">"gold_m"</span>])])
     <span class="kw">for</span> i <span class="kw">in</span> range(<span class="dig">0</span>, len(ne)):
         <span class="skw">click</span>(ne[i])
+        time.<span class="skw">sleep</span>(<span class="dig">0.5</span>)
         <span class="kw">if</span> exists(pics.pics[<span class="str">"gold1"</span>]):
             <span class="skw">click</span>(pics.pics[<span class="str">"gold1"</span>])
 
@@ -113,11 +114,11 @@ reload(pics)
     <span class="skw">click</span>(pics.pics[<span class="str">"train"</span>])
     x=<span class="skw">find</span>(pics.pics[<span class="str">"troop_c"</span>]).text()
     z=<span class="skw">find</span>(pics.pics[<span class="str">"train_c"</span>]).text()
-    <span class="kw">print</span> z
+<span class="cmt">#    print z</span>
     full=z.split(<span class="str">"/"</span>)
     <span class="kw">print</span> full
     troops=x.split(<span class="str">"/"</span>)
-<span class="cmt">#    print troops</span>
+    <span class="kw">print</span> troops
     troops[<span class="dig">0</span>]=parse(troops[<span class="dig">0</span>])
     troops[<span class="dig">1</span>]=parse(troops[<span class="dig">1</span>])
     full[<span class="dig">0</span>]=parse(full[<span class="dig">0</span>])
@@ -130,12 +131,28 @@ reload(pics)
         troops[<span class="dig">0</span>]=troops[<span class="dig">0</span>]+<span class="dig">1</span>
         full[<span class="dig">0</span>]=full[<span class="dig">0</span>]+<span class="dig">1</span>
         <span class="skw">click</span>(pics.pics[<span class="str">"barb"</span>])
+<span class="kw">def</span> upgrade():
+<span class="cmt">#    click("1457584925750.png")</span>
+    <span class="skw">click</span>(<img src="1457585669229.png" />)
+    <span class="kw">if</span> exists(pics.pics[<span class="str">"Gnupgrade"</span>]):
+        ggold=<span class="skw">find</span>(pics.pics[<span class="str">"Gnupgrade"</span>])
+        <span class="kw">print</span> <span class="str">"ggold"</span>
+    <span class="kw">elif</span> exists(pics.pics[<span class="str">"Enupgrade"</span>]):
+        gelixer=<span class="skw">find</span>(pics.pics[<span class="str">"Enupgrade"</span>])
+        <span class="kw">print</span> <span class="str">"gelixer"</span>
+    <span class="kw">else</span>:
+        <span class="kw">print</span> <span class="str">"null"</span>
+        <span class="kw">return</span>
+
 
 <span class="cmt">#chat("hello world")</span>
-<span class="kw">while</span> True:
-    collect()
+<span class="cmt">#while True:</span>
+<span class="cmt">#    try:</span>
+<span class="cmt">#        collect()</span>
+<span class="cmt">#    except:</span>
+<span class="cmt">#        time.sleep(1)</span>
 <span class="cmt">#train_troops()</span>
-
+upgrade()
 </pre>
 </body>
 </html>

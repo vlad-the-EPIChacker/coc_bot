@@ -67,20 +67,22 @@
    </head>
 <body>
 <div class="info">
-<h2>attack royale.sikuli\attack royale.sikuli</h2> <a href="attack royale.sikuli\attack royale.zip">(Download this script)</a>
+<h2>royale_attack_1.sikuli\royale_attack_1.sikuli</h2> <a href="royale_attack_1.sikuli\royale_attack_1.zip">(Download this script)</a>
 </div>
 <pre class="sikuli-code">
 <span class="kw">import</span> time
 <span class="kw">from</span> random <span class="kw">import</span> randint
 
 <span class="kw">def</span> ratioclk(x, y, c):
-    <span class="skw">click</span>(c)
-    scrn=Screen()
-    res=scrn.getBounds()
-    x1, y1= (res.width*x, res.height*y)
-    pointA = Location(x1, y1)
-    <span class="skw">click</span>(pointA)
-
+    <span class="kw">try</span>:
+        <span class="skw">click</span>(c)
+        scrn=Screen()
+        res=scrn.getBounds()
+        x1, y1= (res.width*x, res.height*y)
+        pointA = Location(x1, y1)
+        <span class="skw">click</span>(pointA)
+    <span class="kw">except</span>:
+        <span class="kw">print</span> <span class="str">"Unexpected error:"</span>, sys.exc_info()[<span class="dig">0</span>]
 
 <span class="kw">def</span> attack():
     <span class="skw">click</span>(<img src="1463358584540.png" />)
@@ -93,37 +95,36 @@
     deck=spell+defense+attack
     towers=[(<span class="dig">0.45</span>,<span class="dig">0.25</span>), (<span class="dig">0.5</span>, <span class="dig">0.15</span>)]
     <span class="kw">while</span> <span class="kw">not</span> exists(<img src="1463358584540.png" />):
-        clked=<span class="dig">0</span>
-        <span class="kw">for</span> c <span class="kw">in</span> deck:
+
+        <span class="kw">for</span> c <span class="kw">in</span> spell:
             <span class="kw">if</span> exists(c):
-                <span class="kw">try</span>:
-                    <span class="cmt">#time.sleep(0.5)
-</span>                    <span class="kw">if</span> c <span class="kw">in</span> spell:
-                        ran=towers[randint(<span class="dig">0</span>, <span class="dig">2</span>)]
-                        ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], c)
-                        clked=<span class="dig">1</span>
-                        <span class="kw">print</span> <span class="str">'spell1'</span>
-                    <span class="kw">else</span>:
-                        <span class="kw">if</span> state== <span class="str">'defense'</span> <span class="kw">and</span> c <span class="kw">in</span> defense:
-                            state=<span class="str">'attack'</span>
-                            ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
-                            clked=<span class="dig">1</span>
-                            <span class="kw">print</span> <span class="str">'defense'</span>
-                        <span class="kw">elif</span> state== <span class="str">'attack'</span> <span class="kw">and</span> c <span class="kw">in</span> attack:
-                            state=<span class="str">'defense'</span>
-                            ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
-                            clked=<span class="dig">1</span>
-                            <span class="kw">print</span> <span class="str">'attack'</span>
-                <span class="kw">except</span>:
-                    <span class="kw">print</span> <span class="str">"Unexpected error:"</span>, sys.exc_info()[<span class="dig">0</span>]
+                ran=towers[randint(<span class="dig">0</span>, <span class="dig">1</span>)]
+                ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], c)
+
+
+
+        clked=<span class="dig">0</span>
+        <span class="kw">for</span> c <span class="kw">in</span> defense+attack:
+            <span class="kw">if</span> exists(c):
+                <span class="kw">if</span> state== <span class="str">'defense'</span> <span class="kw">and</span> c <span class="kw">in</span> defense:
+                    state=<span class="str">'attack'</span>
+                    ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
+                    clked=<span class="dig">1</span>
+                    <span class="kw">print</span> <span class="str">'defense'</span>
+                <span class="kw">elif</span> state== <span class="str">'attack'</span> <span class="kw">and</span> c <span class="kw">in</span> attack:
+                    state=<span class="str">'defense'</span>
+                    ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
+                    clked=<span class="dig">1</span>
+                    <span class="kw">print</span> <span class="str">'attack'</span>
+
             <span class="kw">if</span> clked==<span class="dig">0</span>:
-                <span class="kw">for</span> c <span class="kw">in</span> deck:
+                <span class="kw">for</span> c <span class="kw">in</span> defense+attack:
                     <span class="kw">if</span> exists(c):
 
                         <span class="kw">try</span>:
                             <span class="cmt">#time.sleep(0.5)
 </span>                            <span class="kw">if</span> c <span class="kw">in</span> spell:
-                                ran=towers[randint(<span class="dig">0</span>, <span class="dig">2</span>)]
+                                ran=towers[randint(<span class="dig">0</span>, <span class="dig">1</span>)]
                                 ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], c)
                                 <span class="kw">print</span> <span class="str">'spell2'</span>
                             <span class="kw">else</span>:

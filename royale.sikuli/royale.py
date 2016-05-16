@@ -10,6 +10,9 @@ def watch_tv(x):
         click("1457840693591.png")
     click("1457840267405.png")
     click("1457840775610.png")
+\
+    
+    
 def chests():
     c=0
     if exists("1458015332851.png"):
@@ -38,7 +41,4 @@ def chests():
 #click("1458187324243.png")
 #click("1458187357146.png")
 
-while True:
-    time.sleep(3)
-    click("1458143926796.png")
-    chests()
+attack()

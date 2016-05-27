@@ -73,7 +73,20 @@
 <span class="kw">import</span> time
 <span class="kw">from</span> random <span class="kw">import</span> randint
 
+g_cregoin=Region(<span class="dig">750</span>,<span class="dig">980</span>,<span class="dig">536</span>,<span class="dig">217</span>)
+g_kregion=Region(<span class="dig">873</span>,<span class="dig">1018</span>,<span class="dig">174</span>,<span class="dig">84</span>)
+
+
+<span class="kw">def</span> fIA(image, region):
+    aMatch = region.exists(image)
+    <span class="kw">if</span> aMatch==None:
+        <span class="kw">return</span> (False, None)
+    <span class="kw">else</span>:
+        <span class="kw">return</span> (True, aMatch)
+
+
 <span class="kw">def</span> ratioclk(x, y, c):
+    time.<span class="skw">sleep</span>(<span class="dig">2</span>)
     <span class="skw">click</span>(c)
     scrn=Screen()
     res=scrn.getBounds()
@@ -84,7 +97,9 @@
 
 <span class="kw">def</span> attack():
     <span class="skw">click</span>(<img src="1463358584540.png" />)
-    state=<span class="str">'defense'</span>
+    <span class="kw">if</span> exists(<img src="1464103076997.png" />):
+        <span class="skw">click</span>(<img src="1464103076997.png" />)
+    state=<span class="dig">0</span>
     time.<span class="skw">sleep</span>(<span class="dig">1</span>)
     attack=[<img src="1463358928623.png" />,<img src="1463358738718.png" />,<img src="1463358762423.png" />]
     defense=[<img src="1463358716044.png" />,<img src="1463358731931.png" />,<img src="1463362472398.png" />]
@@ -92,47 +107,29 @@
     spell=[<img src="1463358725056.png" />,<img src="1463358772273.png" />]
     deck=spell+defense+attack
     towers=[(<span class="dig">0.45</span>,<span class="dig">0.25</span>), (<span class="dig">0.5</span>, <span class="dig">0.15</span>)]
-    <span class="kw">while</span> <span class="kw">not</span> exists(<img src="1463358584540.png" />):
+    state=randint(<span class="dig">0</span>,<span class="dig">1</span>)
+    <span class="kw">while</span> <span class="kw">not</span> fIA(<img src="1464062086927.png" />, g_kregion)[<span class="dig">0</span>]:
         clked=<span class="dig">0</span>
         <span class="kw">for</span> c <span class="kw">in</span> deck:
-            <span class="kw">if</span> exists(c):
-                <span class="kw">try</span>:
+            <span class="kw">try</span>:
+                u=fIA(c, g_cregoin)
+                <span class="kw">if</span> u[<span class="dig">0</span>]:
                     <span class="cmt">#time.sleep(0.5)
-</span>                    <span class="kw">if</span> c <span class="kw">in</span> spell:
-                        ran=towers[randint(<span class="dig">0</span>, <span class="dig">2</span>)]
-                        ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], c)
+</span>                    <span class="kw">if</span> c <span class="kw">not</span> <span class="kw">in</span> spell:
+                        <span class="kw">if</span> state==<span class="dig">0</span>:
+                            ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, u[<span class="dig">1</span>])
+                        <span class="kw">else</span>:
+                            ratioclk(<span class="dig">0.6</span>,<span class="dig">0.55</span>, u[<span class="dig">1</span>])
+                    <span class="kw">else</span>:
+                        ran=towers[<span class="dig">1</span>]
+                        ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], u[<span class="dig">1</span>])
                         clked=<span class="dig">1</span>
                         <span class="kw">print</span> <span class="str">'spell1'</span>
-                    <span class="kw">else</span>:
-                        <span class="kw">if</span> state== <span class="str">'defense'</span> <span class="kw">and</span> c <span class="kw">in</span> defense:
-                            state=<span class="str">'attack'</span>
-                            ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
-                            clked=<span class="dig">1</span>
-                            <span class="kw">print</span> <span class="str">'defense'</span>
-                        <span class="kw">elif</span> state== <span class="str">'attack'</span> <span class="kw">and</span> c <span class="kw">in</span> attack:
-                            state=<span class="str">'defense'</span>
-                            ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
-                            clked=<span class="dig">1</span>
-                            <span class="kw">print</span> <span class="str">'attack'</span>
-                <span class="kw">except</span>:
-                    <span class="kw">print</span> <span class="str">"Unexpected error:"</span>, sys.exc_info()[<span class="dig">0</span>]
-            <span class="kw">if</span> clked==<span class="dig">0</span>:
-                <span class="kw">for</span> c <span class="kw">in</span> deck:
-                    <span class="kw">if</span> exists(c):
-
-                        <span class="kw">try</span>:
-                            <span class="cmt">#time.sleep(0.5)
-</span>                            <span class="kw">if</span> c <span class="kw">in</span> spell:
-                                ran=towers[randint(<span class="dig">0</span>, <span class="dig">2</span>)]
-                                ratioclk(ran[<span class="dig">0</span>], ran[<span class="dig">1</span>], c)
-                                <span class="kw">print</span> <span class="str">'spell2'</span>
-                            <span class="kw">else</span>:
-                                ratioclk(<span class="dig">0.4</span>,<span class="dig">0.55</span>, c)
-                                <span class="kw">print</span> <span class="str">'random'</span>
-                        <span class="kw">except</span>:
-                            <span class="kw">print</span> <span class="str">"Unexpected error:"</span>, sys.exc_info()[<span class="dig">0</span>]
-
-attack()
+            <span class="kw">except</span>:
+                <span class="kw">print</span> <span class="str">"Unexpected error:"</span>, sys.exc_info()[<span class="dig">0</span>]
+    <span class="skw">click</span>(<img src="1464062086927.png" />)
+<span class="kw">while</span> True:
+    attack()
 </pre>
 </body>
 </html>
